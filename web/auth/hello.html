@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <script src="https://kit.fontawesome.com/0d11ac78fc.js" crossorigin="anonymous"></script>
+        <link type="text/css" rel="stylesheet" href="site.css" />
+    </head>
+
+    <body>
+
+        <div class="app_content">
+            <h1>WELCOME,</h1>
+            <h2 id="name"></h2>
+            <span class="fas fa-sign-out-alt fa-2x" title="Sign Out" aria-label="Sign Out" onclick="onLogout(); return false;"></span>
+            <div>
+                <img id="pic" src=""/>
+            </div>
+            <div class="info">
+                You're last login was at <span id="lastLogin"></span>
+            </div>
+        </div>        
+
+        <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-auth.js"></script>
+        <script src="scripts/firebase-config.js"></script>  
+            
+        <script>
+            // Initialize Firebase
+            firebase.initializeApp(global_firebaseConfig);
+            
+            var nameEl = document.getElementById('name');
+            var pic = document.getElementById('pic');
+
+            firebase.auth().onAuthStateChanged(function(user) {
+                if (user) {
+                    var theUser = firebase.auth().currentUser;
+                    nameEl.innerText = user.displayName;
+                    pic.src = user.photoURL + "?type=large";    
+
+                    const regEx = RegExp(".*twimg.*");
+                    if (regEx.test(user.photoURL) === true) {
+                        pic.src = user.photoURL.replace('_normal','');
+                    }
+
+                    var elLast = document.getElementById("lastLogin");
+
+                    elLast.innerText = user.metadata.lastSignInTime.toString();
+                } 
+                else {
+                    nameEl.innerText = "NONE"
+                }
+            });
+
+            function onLogout() {
+                firebase.auth().signOut();
+                window.location.href = "index.html"
+            }
+            
+        </script>
+    </body>
+</html>

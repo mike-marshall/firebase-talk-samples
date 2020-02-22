@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Firebase Auth Demo</string>
+    <string name="action_settings">Settings</string>
+	<string name="profile_pic_label" translate="false">Profile Pic</string>
+    <string name="last_login_label" translate="false">No Session</string>
+
+	
+	<!-- Facebook app ID-
+    <string name="facebook_application_id" translatable="false">app id here</string>
+    <string name="facebook_login_protocol_scheme" translatable="false">app id here</string> -->
+	
+    <!-- Twitter consumer key and secret 
+    <string name="twitter_consumer_key" translatable="false">Twitter consumer key</string>
+    <string name="twitter_consumer_secret" translatable="false">Twitter consumer secret</string>-->
+	
+</resources>
